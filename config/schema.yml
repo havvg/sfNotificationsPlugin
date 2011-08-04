@@ -1,0 +1,65 @@
+propel:
+  _attributes:
+    package: plugins.sfNotificationsPlugin.lib.model
+
+  notification_type:
+    id: ~
+    name:
+      index: unique
+      primaryString: true
+      required: true
+      type: varchar(255)
+
+  notification_type_attribute:
+    id: ~
+    name:
+      required: true
+      type: varchar(255)
+    display_name:
+      primaryString: true
+      required: true
+      type: varchar(255)
+    notification_type_id: ~
+    _uniques:
+      name_for_notification_type:
+        - name
+        - notification_type_id
+      display_name_for_notification_type:
+        - display_name
+        - notification_type_id
+
+  notification_configuration:
+    id: ~
+    name:
+      primaryString: true
+      required: true
+      type: varchar(255)
+    user_id:
+      foreignReference: id
+      foreignTable: sf_guard_user
+      required: true
+      type: integer
+    notification_type_id: ~
+
+  notification_configuration_value:
+    id: ~
+    notification_configuration_id: ~
+    notification_type_attribute_id: ~
+    value:
+      required: true
+      type: varchar(255)
+    _uniques:
+      value_for_config_per_type:
+        - notification_configuration_id
+        - notification_type_attribute_id
+
+  notification:
+    _attributes:
+      abstract: true
+      skipSQL: true
+    id: ~
+    notification_configuration_id: ~
+    dataset:
+      default: null
+      required: false
+      type: longvarchar

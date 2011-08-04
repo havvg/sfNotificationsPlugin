@@ -1,0 +1,17 @@
+NotificationType:
+  SimpleFile:
+    name: "SimpleFile"
+NotificationTypeAttribute:
+  SimpleFileAttributeFileName:
+    name: "filename"
+    notification_type_id: SimpleFile
+NotificationConfiguration:
+  SimpleFileSampleConfig:
+    name: "Sample Configuration for SimpleFile"
+    user_id: User
+    notification_type_id: SimpleFile
+NotificationConfigurationValue:
+  SimpleFileSampleConfigFilename:
+    notification_configuration_id: SimpleFileSampleConfig
+    notification_type_attribute_id: SimpleFileAttributeFileName
+    value: "simple_notifications.log"

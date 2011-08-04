@@ -1,0 +1,11 @@
+sfGuardUser:
+  User:
+    username: Username
+    algorithm: sha1
+    salt: c8ca40c154910abf906ee30dc5521d12
+    # password: "password"
+    password: 59f7ba90813145ce55913c633d4ab3e41d037576
+    created_at: ~
+    last_login: null
+    is_active: 1
+    is_super_admin: 0

@@ -1,0 +1,13 @@
+autoload:  
+  sfNotificationsPlugin_tests:
+    name:           sfNotificationsPlugin tests
+    path:           %SF_PLUGINS_DIR%/sfNotificationsPlugin/lib/test
+    recursive:      false
+  sfNotificationsPlugin_notifierss:
+    name:           sfNotificationsPlugin notifiers
+    path:           %SF_PLUGINS_DIR%/sfNotificationsPlugin/lib/notifier
+    recursive:      false
+  project_lib_notifiers:
+    name:           Project notifiers library
+    path:           %SF_LIB_DIR%/notifier
+    recursive:      true

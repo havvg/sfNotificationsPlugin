@@ -1,0 +1,18 @@
+h1. sfNotificationsPlugin
+
+The sfNotificationsPlugin provides a system to configure and trigger notifiers.
+
+h1. Definitions
+
+h2. Notifier
+
+A notifier is *a sender of information* related to concrete notifications.
+
+It defines an algorithm which is the actual outbound notification.
+The notifier also defines a configuration set with a list of attributes related to the type of action it performs.
+
+h2. Notification
+
+A notification is *a configuration and dataset* for a given notifier.
+
+The notification will trigger all related notifiers based on its contract with those notifiers.
