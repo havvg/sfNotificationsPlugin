@@ -16,3 +16,52 @@ h2. Notification
 A notification is *a configuration and dataset* for a given notifier.
 
 The notification will trigger all related notifiers based on its contract with those notifiers.
+
+h1. Usage
+
+h2. Creating a concrete notification
+
+There are very few steps to take, to have the first notification and notifier setup.
+
+First of all, you have to create a notification model. This will be a concrete notification.
+The concrete inheritance behavior is used to create this notification.
+<pre>
+_propel_behaviors:
+  concrete_inheritance:
+    copy_data_to_parent: false
+    extends: notification
+</pre>
+The actual notification may be extended in any ways it is required to for the use case of it.
+
+You need to import the plugins schema before defining the concrete notification.
+<pre>
+propel:
+  _attributes:
+    external-schema: plugins/sfNotificationsPlugin/config/schema.yml
+</pre>
+
+h2. Creating a notifier
+
+A notifier is a class implementing the @Notifier@ interface.
+
+* It defines the configuration items - attributes - and itself (type).
+* It will receive a configuration.
+
+After receiving all this data the following steps are based on a contract between this notifier and the concrete notification triggering it.
+
+* The notifier will be bound to data and is required to validate (bindAndValidate) this data. If the data is not valid based on the contract, it should fail.
+* The final step is the actual work of the notifier.
+
+For a more in-depth view, see @PluginNotification::doNotify@.
+
+h1. Why not event dispatcher?
+
+In general the notification acts like an event dispatcher, which dispatches available and configured notifiers.
+The notifier and the notification are bound by a contract they agreed on.
+The configuration is saved into a database and the related data for the notifier will be provided on runtime.
+
+You can easily connect the trigger of a notification with an event dispatcher.
+
+h1. Example
+
+A very basic example is provided within the tests using the SimpleFileNotifier from the fixtures.
